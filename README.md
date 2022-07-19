@@ -1,5 +1,5 @@
-# Nuxt 3 Minimal Starter
-
+# Club Advisor
+Nuxt 3 sample app
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
 ## Setup
