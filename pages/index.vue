@@ -8,7 +8,7 @@ const message = ref<string>('');
 </template>
 <style scoped>
 .display {
-	display: flex; 
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin-top: 50px;
