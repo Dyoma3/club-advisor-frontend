@@ -3,9 +3,11 @@ const email = ref<string>('');
 const password = ref<string>('');
 
 function logIn() {
-	console.log(email);
+	const { pending, data } = useLazyFetch('http://localhost:3333/log-in', {
+		method: 'post',
+		body: { email, password },
+	});
 }
-
 </script>
 
 <template>

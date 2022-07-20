@@ -8,7 +8,6 @@ export default defineNuxtConfig({
 	css: [
     '@/assets/main.css',
     'vuetify/lib/styles/main.sass',
-    'mdi/css/materialdesignicons.min.css',
   ],
 	vite: {
 		css: {
