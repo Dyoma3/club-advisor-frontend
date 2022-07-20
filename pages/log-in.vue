@@ -1,13 +1,21 @@
 <script setup lang="ts">
-const email = ref<string>('');
-const password = ref<string>('');
+let credentials = reactive({
+	email: '',
+	password: '',
+});
 
-function logIn() {
-	const { pending, data } = useLazyFetch('http://localhost:3333/log-in', {
-		method: 'post',
-		body: { email, password },
-	});
-}
+const { data, loading, error, fetch: logIn } = useAxios({
+	url: 'http://localhost:3333/log-in',
+	lazy: true,
+	data: credentials,
+	method: 'post'
+});
+
+watch(data, (v) => {
+	if (v) {
+		console.log(v);
+	}
+});
 </script>
 
 <template>
@@ -15,8 +23,8 @@ function logIn() {
 		<div class="centered-display card">
 			<div class="title">Log In</div>
 			<form @submit.prevent="logIn" class="centered-display">
-				<input v-model="email" placeholder="email"/>
-				<input v-model="password" placeholder="password" type="password"/>
+				<input v-model="credentials.email" placeholder="email"/>
+				<input v-model="credentials.password" placeholder="password" type="password"/>
 				<v-btn type="submit">Log In</v-btn>
 			</form>
 		</div>

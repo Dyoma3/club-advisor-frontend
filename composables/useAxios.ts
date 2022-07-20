@@ -1,20 +1,17 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-interface optionsType {
-	url: string;
-	method?: 'get' | 'post' | 'patch' | 'put' | 'delete';
+interface OptionsType extends AxiosRequestConfig {
 	lazy?: boolean;
 }
 
-function useAxios(options: optionsType) {
-	const { url, method, lazy } = options;
+function useAxios(options: OptionsType) {
 	const data = ref<object | null>(null);
 	const loading = ref<boolean>(false);
 	const error = ref<Error | null>(null);
 
 	function fetch() {
 		loading.value = true;
-		axios({ url, method })
+		axios(options)
 			.then((r) => {
 				data.value = r.data;
 				if (error.value) error.value = null;
@@ -23,7 +20,7 @@ function useAxios(options: optionsType) {
 			.finally(() => loading.value = false);
 	}
 
-	if (!lazy) fetch();
+	if (!options.lazy) fetch();
 
 	return { data, loading, error, fetch };
 }
