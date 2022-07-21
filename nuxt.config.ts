@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     '@/assets/main.css',
     'vuetify/lib/styles/main.sass',
   ],
+  modules: [
+    '@pinia/nuxt',
+  ],
 	vite: {
 		css: {
 				preprocessorOptions: {

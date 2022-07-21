@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useUser } from '~/stores/user';
+
+const userStore = useUser();
+
 let credentials = reactive({
 	email: '',
 	password: '',
@@ -13,7 +17,13 @@ const { data, loading, error, fetch: logIn } = useAxios({
 
 watch(data, (v) => {
 	if (v) {
-		console.log(v);
+		userStore.$patch({
+			name: v.name as string,
+			email: v.email as string,
+			token: v.token as string,
+			isAdmin: v.role === 'ADMIN',
+			loggedIn: true,
+		})
 	}
 });
 </script>

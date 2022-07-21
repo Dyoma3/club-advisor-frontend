@@ -3,9 +3,12 @@ import axios, { AxiosRequestConfig } from 'axios';
 interface OptionsType extends AxiosRequestConfig {
 	lazy?: boolean;
 }
+interface DataType {
+	[key: string]: string | number | Date;
+}
 
 function useAxios(options: OptionsType) {
-	const data = ref<object | null>(null);
+	const data = ref<DataType | null>(null);
 	const loading = ref<boolean>(false);
 	const error = ref<Error | null>(null);
 
