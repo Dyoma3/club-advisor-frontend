@@ -5,7 +5,7 @@ import { useUser } from '~/stores/user';
 const userStore = useUser();
 const { name, loggedIn } = storeToRefs(userStore);
 
-function logOut() {
+async function logOut() {
 	userStore.$patch({
 		id: -1,
 		name: '',
@@ -13,14 +13,16 @@ function logOut() {
 		token: '',
 		isAdmin: false,
 		loggedIn: false,
-	})
+	});
+	await nextTick();
+	navigateTo('/');
 }
 
 </script>
 <template>
 	<div>
 		<div class="layout">
-			<h2>Club Advisor</h2>
+			<h2 @click="navigateTo('/')">Club Advisor</h2>
 			<div v-if="loggedIn" style="display:flex;">
 				<p>{{ name }}</p>
 				<p @click="logOut" style="cursor:pointer;">Log out</p>
@@ -49,6 +51,7 @@ function logOut() {
 h2 {
 	font-size: 25px;
 	font-weight: 500;
+	cursor: pointer;
 }
 p {
 	font-size: 18px;
