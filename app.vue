@@ -11,15 +11,29 @@ body {
   margin: 0px;
   font-family: $fontFamily;
 }
+h1 {
+	font-size: 28px;
+	font-weight: 500;
+}
 input {
 	padding: 8px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #dadada;
 	border-radius: 5px;
+	width: 250px;
 }
 input:focus {
   outline-color: green;
   border-color: green;
+}
+.card {
+	border-width: 1px;
+	border-color: #dadada;
+	border-style: solid;
+	border-radius: 5px;
+	margin-top: 50px;
+	padding: 50px 0px 50px 0px;
+	width: 320px;
 }
 </style>

@@ -7,6 +7,7 @@ const { name, loggedIn } = storeToRefs(userStore);
 
 function logOut() {
 	userStore.$patch({
+		id: -1,
 		name: '',
 		email: '',
 		token: '',
@@ -19,10 +20,14 @@ function logOut() {
 <template>
 	<div>
 		<div class="layout">
-			<h1>Club Advisor</h1>
+			<h2>Club Advisor</h2>
 			<div v-if="loggedIn" style="display:flex;">
 				<p>{{ name }}</p>
-				<p @click="logOut" style="cursor:pointer;margin-left: 20px;">Log out</p>
+				<p @click="logOut" style="cursor:pointer;">Log out</p>
+			</div>
+			<div v-else style="display:flex">
+				<p @click="navigateTo('/log-in')" style="cursor:pointer;">Log in</p>
+				<p @click="navigateTo('/sign-up')" style="cursor:pointer;">Sign up</p>
 			</div>
 		</div>
 		<slot/>
@@ -41,14 +46,15 @@ function logOut() {
 	align-items: center;
 	justify-content: space-between;
 }
-h1 {
+h2 {
 	font-size: 25px;
 	font-weight: 500;
 }
 p {
 	font-size: 18px;
+	margin-left: 20px;
 }
-p, h1 {
+p, h2 {
 	color: white;
 }
 </style>
