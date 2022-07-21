@@ -4,12 +4,15 @@ import { useUser } from '~/stores/user';
 
 const userStore = useUser();
 const { name, loggedIn } = storeToRefs(userStore);
-watch(name, (v) => {
-	console.log(v);
-})
 
 function logOut() {
-	return;
+	userStore.$patch({
+		name: '',
+		email: '',
+		token: '',
+		isAdmin: false,
+		loggedIn: false,
+	})
 }
 
 </script>
