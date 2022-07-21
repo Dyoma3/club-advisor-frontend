@@ -2,29 +2,24 @@ import { defineNuxtConfig } from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-	build: {
-    transpile:
-      process.env.NODE_ENV === 'production'
-        ? [
-            'naive-ui',
-            'vueuc',
-            '@css-render/vue3-ssr',
-            '@juggle/resize-observer'
-          ]
-        : ['@juggle/resize-observer']
+  build: {
+    transpile: ['vuetify'],
   },
-	css: [],
+	css: [
+    '@/assets/main.css',
+    'vuetify/lib/styles/main.sass',
+  ],
+  modules: [
+    '@pinia/nuxt',
+  ],
 	vite: {
 		css: {
 				preprocessorOptions: {
 						scss: { additionalData: '@import "@/assets/variables.scss";' },
 				},
 		},
-		optimizeDeps: {
-      include:
-        process.env.NODE_ENV === 'development'
-          ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']
-          : []
+    define: {
+      'process.env.DEBUG': false,
     },
 	},
 })

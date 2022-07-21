@@ -7,12 +7,15 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "naive-ui": "^2.31.0",
     "nuxt": "3.0.0-rc.6"
   },
   "dependencies": {
-    "@css-render/vue3-ssr": "^0.15.10",
+    "@pinia/nuxt": "^0.3.0",
+    "axios": "^0.27.2",
+    "mdi": "^2.2.43",
+    "pinia": "^2.0.16",
     "sass": "^1.53.0",
-    "sass-loader": "^13.0.2"
+    "sass-loader": "^13.0.2",
+    "vuetify": "^3.0.0-beta.5"
   }
 }
