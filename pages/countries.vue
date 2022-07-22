@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { useUser } from '~/stores/user';
 import { CountryType, AxiosResponseType } from '~/types';
 
@@ -8,7 +7,6 @@ interface ResponseType extends AxiosResponseType {
 }
 
 const userStore = useUser();
-const { isAdmin, loggedIn } = storeToRefs(userStore);
 
 const { data: countries, loading, error, fetch }: ResponseType = useAxios({ url: 'http://localhost:3333/countries' });
 
@@ -16,12 +14,12 @@ const { data: countries, loading, error, fetch }: ResponseType = useAxios({ url:
 
 <template>
 	<div class="centered-display">
-		<div v-if="isAdmin" style="display:flex;justify-content:end">
-			<v-btn>Add Country</v-btn>
-		</div>
 		<div v-if="countries" class="grid grid-cols-3">
-			<div v-for="country in countries" class="card centered-display">
-				{{ country.name }}
+			<div v-if="userStore.isAdmin" class="buttons-container">
+				<v-btn>Add Country</v-btn>
+			</div>
+			<div v-for="country in countries" class="card centered-display expand">
+				<h2>{{ country.name }}</h2>
 			</div>
 		</div>
 	</div>
@@ -30,13 +28,20 @@ const { data: countries, loading, error, fetch }: ResponseType = useAxios({ url:
 <style scoped lang="scss">
 .grid {
 	column-gap: 20px;
-	row-gap: 0px;
+	row-gap: 10px;
+	margin-top: 50px;
 }
 .card {
 	height: 200px;
-	background-color: blue;
+	width: 250px;
+	cursor: pointer;
 }
 .centered-display {
 	justify-content: center;
+}
+.buttons-container {
+	grid-column: span 3 / span 3;
+	display: flex;
+	justify-content: end;
 }
 </style>

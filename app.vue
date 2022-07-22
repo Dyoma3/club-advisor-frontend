@@ -27,13 +27,4 @@ input:focus {
   outline-color: green;
   border-color: green;
 }
-.card {
-	border-width: 1px;
-	border-color: #dadada;
-	border-style: solid;
-	border-radius: 5px;
-	margin-top: 50px;
-	padding: 50px 0px 50px 0px;
-	width: 320px;
-}
 </style>

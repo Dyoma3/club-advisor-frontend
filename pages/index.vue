@@ -24,6 +24,7 @@ const message = ref<string>('');
 	border-color: #dadada;
 	transition: all 0.4s;
 	height: 200px;
+	width: 250px;
 	cursor: pointer;
 }
 .card:hover {
