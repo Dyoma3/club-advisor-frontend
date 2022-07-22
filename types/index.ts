@@ -13,3 +13,11 @@ export interface CountryType {
 	created_at: string;
 	updated_at: string;
 }
+
+export interface UserType {
+	id: number;
+	name: string;
+	email: string;
+	token: string;
+	role: string;
+}

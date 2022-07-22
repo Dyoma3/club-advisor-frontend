@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { useUser } from '~/stores/user';
-import { CountryType, AxiosResponseType } from '~/types';
+import { CountryType } from '~/types';
 
-interface ResponseType extends AxiosResponseType {
-	data: CountryType[];
-}
 
 const userStore = useUser();
 
-const { data: countries, loading, error, fetch }: ResponseType = useAxios({ url: 'http://localhost:3333/countries' });
+const { data: countries, loading, error, fetch } = useAxios<CountryType[]>({ url: 'http://localhost:3333/countries' });
 
 </script>
 
@@ -18,7 +15,11 @@ const { data: countries, loading, error, fetch }: ResponseType = useAxios({ url:
 			<div v-if="userStore.isAdmin" class="buttons-container">
 				<v-btn>Add Country</v-btn>
 			</div>
-			<div v-for="country in countries" class="card centered-display expand">
+			<div
+				v-for="country in countries"
+				class="card centered-display expand"
+				@click="navigateTo(`/countries/${country.id}`)"
+			>
 				<h2>{{ country.name }}</h2>
 			</div>
 		</div>
@@ -41,7 +42,6 @@ const { data: countries, loading, error, fetch }: ResponseType = useAxios({ url:
 }
 .buttons-container {
 	grid-column: span 3 / span 3;
-	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 }
 </style>

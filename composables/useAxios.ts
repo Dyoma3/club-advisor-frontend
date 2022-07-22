@@ -3,12 +3,9 @@ import axios, { AxiosRequestConfig } from 'axios';
 interface OptionsType extends AxiosRequestConfig {
 	lazy?: boolean;
 }
-interface DataType {
-	[key: string]: any;
-}
 
-function useAxios(options: OptionsType) {
-	const data = ref<any | null>(null);
+function useAxios<Type>(options: OptionsType) {
+	const data = ref<Type | null>(null);
 	const loading = ref<boolean>(false);
 	const error = ref<Error | null>(null);
 

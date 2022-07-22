@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser } from '~~/stores/user';
+import { UserType } from '~~/types';
 
 const userStore = useUser();
 
@@ -9,7 +10,7 @@ let credentials = reactive({
 	password: '',
 });
 
-const { data, loading, error, fetch: signUp } = useAxios({
+const { data, loading, error, fetch: signUp } = useAxios<UserType>({
 	url: 'http://localhost:3333/sign-up',
 	lazy: true,
 	data: credentials,
@@ -18,10 +19,10 @@ const { data, loading, error, fetch: signUp } = useAxios({
 
 watch(data, async (v) => {
 	userStore.$patch({
-			id: v.id as number,
-			name: v.name as string,
-			email: v.email as string,
-			token: v.token as string,
+			id: v.id,
+			name: v.name,
+			email: v.email,
+			token: v.token,
 			isAdmin: v.role === 'ADMIN',
 			loggedIn: true,
 		});

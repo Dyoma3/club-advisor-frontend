@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const message = ref<string>('');
 </script>
 <template>
 	<div class="centered-display">
