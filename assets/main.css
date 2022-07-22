@@ -16,3 +16,14 @@
 .grid-cols-10	{ grid-template-columns: repeat(10, minmax(0, 1fr)); }
 .grid-cols-11	{ grid-template-columns: repeat(11, minmax(0, 1fr)); }
 .grid-cols-12	{ grid-template-columns: repeat(12, minmax(0, 1fr)); }
+
+.card {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #dadada;
+	border-radius: 5px;
+}
+h2 {
+	color: #474747;
+	font-size: 25px;
+}

@@ -4,11 +4,11 @@ interface OptionsType extends AxiosRequestConfig {
 	lazy?: boolean;
 }
 interface DataType {
-	[key: string]: string | number | Date;
+	[key: string]: any;
 }
 
 function useAxios(options: OptionsType) {
-	const data = ref<DataType | null>(null);
+	const data = ref<any | null>(null);
 	const loading = ref<boolean>(false);
 	const error = ref<Error | null>(null);
 
