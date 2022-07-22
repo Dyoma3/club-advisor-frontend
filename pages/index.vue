@@ -2,26 +2,21 @@
 const message = ref<string>('');
 </script>
 <template>
-	<div class="display">
-		<div style="height: 20px">{{ message }}</div>
+	<div class="centered-display">
+		<div>
+			
+		</div>
 	</div>
 </template>
 <style scoped>
-.display {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 50px;
+.card {
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: #dadada;
+	transition: all 5s;
 }
-.n-card {
-	width: 300px;
-}
-.carousel-img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-}
-.n-carousel {
-	width: 300px;
+.card:hover {
+	transform: scale(1.05);
 }
 </style>
