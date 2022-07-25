@@ -13,11 +13,11 @@ const { data: countries, loading, error, fetch } = useAxios<CountryType[]>({ url
 	<div class="centered-display">
 		<div v-if="countries" class="grid grid-cols-3">
 			<div v-if="userStore.isAdmin" class="buttons-container">
-				<v-btn>Add Country</v-btn>
+				<button>Add Country</button>
 			</div>
 			<div
 				v-for="country in countries"
-				class="card centered-display expand"
+				class="centered-card expand"
 				@click="navigateTo(`/countries/${country.id}`)"
 			>
 				<h2>{{ country.name }}</h2>
@@ -32,7 +32,7 @@ const { data: countries, loading, error, fetch } = useAxios<CountryType[]>({ url
 	row-gap: 10px;
 	margin-top: 50px;
 }
-.card {
+.centered-card {
 	height: 200px;
 	width: 250px;
 	cursor: pointer;

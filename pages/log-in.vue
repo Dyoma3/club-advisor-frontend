@@ -55,4 +55,8 @@ input {
 button {
 	margin-top: 20px;
 }
+.card {
+	margin-top: 80px;
+	padding: 50px 40px 50px 40px;
+}
 </style>
