@@ -39,7 +39,6 @@ async function logOut() {
 .layout {
 	height: 70px;
 	background-color: #002129;
-	width: 100vw;
 	top: 0px;
 	left: 0px;
 	padding: 0px 50px 0px 50px;

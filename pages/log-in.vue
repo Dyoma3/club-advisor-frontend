@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser } from '~/stores/user';
+import { UserType } from '~~/types';
 
 const userStore = useUser();
 
@@ -8,7 +9,7 @@ let credentials = reactive({
 	password: '',
 });
 
-const { data, loading, error, fetch: logIn } = useAxios({
+const { data, loading, error, fetch: logIn } = useAxios<UserType>({
 	url: 'http://localhost:3333/log-in',
 	lazy: true,
 	data: credentials,
@@ -18,10 +19,10 @@ const { data, loading, error, fetch: logIn } = useAxios({
 watch(data, async (v) => {
 	if (v) {
 		userStore.$patch({
-			id: v.id as number,
-			name: v.name as string,
-			email: v.email as string,
-			token: v.token as string,
+			id: v.id,
+			name: v.name,
+			email: v.email,
+			token: v.token,
 			isAdmin: v.role === 'ADMIN',
 			loggedIn: true,
 		});
@@ -38,7 +39,7 @@ watch(data, async (v) => {
 			<form @submit.prevent="logIn" class="centered-display">
 				<input v-model="credentials.email" placeholder="email"/>
 				<input v-model="credentials.password" placeholder="password" type="password"/>
-				<v-btn type="submit">Log In</v-btn>
+				<button type="submit">Log In</button>
 			</form>
 		</div>
 	</div>
@@ -53,5 +54,9 @@ input {
 }
 button {
 	margin-top: 20px;
+}
+.card {
+	margin-top: 80px;
+	padding: 50px 40px 50px 40px;
 }
 </style>

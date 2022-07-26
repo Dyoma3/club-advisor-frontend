@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser } from '~~/stores/user';
+import { UserType } from '~~/types';
 
 const userStore = useUser();
 
@@ -9,7 +10,7 @@ let credentials = reactive({
 	password: '',
 });
 
-const { data, loading, error, fetch: signUp } = useAxios({
+const { data, loading, error, fetch: signUp } = useAxios<UserType>({
 	url: 'http://localhost:3333/sign-up',
 	lazy: true,
 	data: credentials,
@@ -17,16 +18,17 @@ const { data, loading, error, fetch: signUp } = useAxios({
 });
 
 watch(data, async (v) => {
+	if (!v) return;
 	userStore.$patch({
-			id: v.id as number,
-			name: v.name as string,
-			email: v.email as string,
-			token: v.token as string,
-			isAdmin: v.role === 'ADMIN',
-			loggedIn: true,
-		});
-		await nextTick();
-		navigateTo(`profiles/${userStore.id}`);
+		id: v.id,
+		name: v.name,
+		email: v.email,
+		token: v.token,
+		isAdmin: v.role === 'ADMIN',
+		loggedIn: true,
+	});
+	await nextTick();
+	navigateTo(`profiles/${userStore.id}`);
 });
 </script>
 
@@ -53,5 +55,9 @@ input {
 }
 button {
 	margin-top: 20px;
+}
+.card {
+	margin-top: 80px;
+	padding: 50px 40px 50px 40px;
 }
 </style>
