@@ -9,10 +9,6 @@ export default defineNuxtConfig({
     '@/assets/main.scss',
     // 'vuetify/lib/styles/main.sass',
   ],
-  // meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-  meta: {
-    meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-  },
   modules: [
     '@pinia/nuxt',
   ],

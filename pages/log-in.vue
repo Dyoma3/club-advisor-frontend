@@ -39,7 +39,7 @@ watch(data, async (v) => {
 			<form @submit.prevent="logIn" class="centered-display">
 				<input v-model="credentials.email" placeholder="email"/>
 				<input v-model="credentials.password" placeholder="password" type="password"/>
-				<v-btn type="submit">Log In</v-btn>
+				<button type="submit">Log In</button>
 			</form>
 		</div>
 	</div>
