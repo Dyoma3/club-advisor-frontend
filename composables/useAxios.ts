@@ -9,15 +9,17 @@ function useAxios<Type>(options: OptionsType) {
 	const loading = ref<boolean>(false);
 	const error = ref<Error | null>(null);
 
-	function fetch() {
+	async function fetch() {
 		loading.value = true;
-		axios(options)
-			.then((r) => {
-				data.value = r.data;
-				if (error.value) error.value = null;
-			})
-			.catch((e) => error.value = e)
-			.finally(() => loading.value = false);
+		try {
+			const r = await axios(options);
+			data.value = r.data;
+			if (error.value) error.value = null;
+		} catch (e) {
+			error.value = e;
+		} finally {
+			loading.value = false;
+		}
 	}
 
 	if (!options.lazy) fetch();

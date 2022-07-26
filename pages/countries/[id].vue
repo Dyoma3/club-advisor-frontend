@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { CountryType, CityType, ClubType } from '~/types';
+import { useUser } from '~/stores/user';
+
+const userStore = useUser();
 
 const route = useRoute();
 const { id } = route.params;
@@ -11,11 +14,34 @@ const { data: country } = await useFetch<CountryType>(
 const { data: cities } = useAxios<CityType[]>({ url: `http://localhost:3333/countries/${id}/cities` });
 
 const { data: clubs } = useAxios<ClubType[]>({ url: `http://localhost:3333/countries/${id}/clubs` });
+
+const { fetch: removeCountry } = useAxios({
+	url: `http://localhost:3333/countries/${id}`,
+	method: 'delete',
+	lazy: true,
+	headers: { Authorization: `Bearer ${userStore.token}`},
+});
+
+function onRemoveCountry() {
+	removeCountry()
+		.then(() => {
+			navigateTo('/countries');
+		})
+}
 </script>
 
 <template>
 	<div class="centered-display">
-		<h1>{{ country.name }}</h1>
+		<div style="position:relative">
+			<h1>{{ country.name }}</h1>
+			<button
+				v-if="userStore.isAdmin"
+				style="position:absolute;top:50px;left:400px"
+				@click="onRemoveCountry"
+			>
+				Remove
+			</button>
+		</div>
 		<div class="grid grid-cols-4">
 			<h2 class="col-span-4">Cities</h2>
 				<div
@@ -58,6 +84,9 @@ h1 {
 	height: 100px;
 	width: 200px;
 	cursor: pointer;
+}
+button {
+	border-color: red;
 }
 </style>
 
