@@ -18,16 +18,17 @@ const { data, loading, error, fetch: signUp } = useAxios<UserType>({
 });
 
 watch(data, async (v) => {
+	if (!v) return;
 	userStore.$patch({
-			id: v.id,
-			name: v.name,
-			email: v.email,
-			token: v.token,
-			isAdmin: v.role === 'ADMIN',
-			loggedIn: true,
-		});
-		await nextTick();
-		navigateTo(`profiles/${userStore.id}`);
+		id: v.id,
+		name: v.name,
+		email: v.email,
+		token: v.token,
+		isAdmin: v.role === 'ADMIN',
+		loggedIn: true,
+	});
+	await nextTick();
+	navigateTo(`profiles/${userStore.id}`);
 });
 </script>
 
