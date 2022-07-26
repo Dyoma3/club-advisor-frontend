@@ -3,13 +3,13 @@
 <template>
 	<div class="centered-display">
 		<div class="grid grid-cols-3">
-			<div class="centered-card" @click="navigateTo('/countries')">
+			<div class="centered-card expand" @click="navigateTo('/countries')">
 				<h2>Countries</h2>
 			</div>
-			<div class="centered-card">
+			<div class="centered-card expand" @click="navigateTo('/cities')">
 				<h2>Cities</h2>
 			</div>
-			<div class="centered-card">
+			<div class="centered-card expand" @click="navigateTo('/clubs')">
 				<h2>Clubs</h2>
 			</div>
 		</div>

@@ -11,6 +11,7 @@ const { data: countries, loading, error, fetch } = useAxios<CountryType[]>({ url
 
 <template>
 	<div class="centered-display">
+		<h1>Countries</h1>
 		<div v-if="countries" class="grid grid-cols-3">
 			<div v-if="userStore.isAdmin" class="buttons-container">
 				<button @click="navigateTo('/countries/add')">Add Country</button>

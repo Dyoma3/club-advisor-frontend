@@ -40,7 +40,7 @@ watch(data, async (v) => {
 				<input v-model="credentials.name" placeholder="name" />
 				<input v-model="credentials.email" placeholder="email" />
 				<input v-model="credentials.password" placeholder="password" type="password" />
-				<v-btn type="submit">Sign Up</v-btn>
+				<button type="submit">Sign Up</button>
 			</form>
 		</div>
 	</div>
